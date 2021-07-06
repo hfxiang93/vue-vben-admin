@@ -85,21 +85,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Set SSH Environment
-        env:
-          DOCS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$ACTIONS_DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com > ~/.ssh/known_hosts
-          chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
-          git config --local user.email "hfxiang2@aliyun.com"
-          git config --local user.name "hfxiang93"
-
-      - name: Delete gh-pages branch
-        run: |
-          git push origin --delete gh-pages
+      #      - name: Set SSH Environment
+      #        env:
+      #          DOCS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      #        run: |
+      #          mkdir -p ~/.ssh/
+      #          echo "$ACTIONS_DEPLOY_KEY" > ~/.ssh/id_rsa
+      #          chmod 600 ~/.ssh/id_rsa
+      #          ssh-keyscan github.com > ~/.ssh/known_hosts
+      #          chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+      #          git config --local user.email "hfxiang2@aliyun.com"
+      #          git config --local user.name "hfxiang93"
+      #
+      #      - name: Delete gh-pages branch
+      #        run: |
+      #          git push origin --delete gh-pages
 
       - name: Build
         run: |
