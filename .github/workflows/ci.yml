@@ -10,10 +10,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Build and Deploy
+      - name: Build
+        run: |
+          yarn install
+          yarn run build
+      #           touch dist/.nojekyll
+      #           cp dist/index.html dist/404.html
+
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v2.5.0
         env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: dist
-          BUILD_SCRIPT: yarn install && yarn run build
+          ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./dist
+        with:
+          forceOrphan: true
