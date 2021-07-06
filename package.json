@@ -11,6 +11,8 @@
     "serve": "npm run dev",
     "dev": "vite",
     "build": "cross-env NODE_ENV=production vite build && esno ./build/script/postBuild.ts",
+    "build:dev": "cross-env NODE_ENV=development vite build && esno ./build/script/postBuild.ts",
+    "deploy": "gh-pages -d dist",
     "build:no-cache": "yarn clean:cache && npm run build",
     "report": "cross-env REPORT=true npm run build",
     "type:check": "vue-tsc --noEmit --skipLibCheck",
@@ -44,6 +46,7 @@
     "cropperjs": "^1.5.12",
     "crypto-js": "^4.0.0",
     "echarts": "^5.1.2",
+    "gh-pages": "^3.2.3",
     "intro.js": "^4.1.0",
     "lodash-es": "^4.17.21",
     "mockjs": "^1.1.0",
@@ -148,7 +151,7 @@
   "bugs": {
     "url": "https://github.com/anncwb/vue-vben-admin/issues"
   },
-  "homepage": "https://github.com/anncwb/vue-vben-admin",
+  "homepage": "https://github.com/hfxiang93/vue-vben-admin",
   "engines": {
     "node": "^12 || >=14"
   }
