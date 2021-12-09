@@ -73,6 +73,15 @@ const system: AppRouteModule = {
       component: () => import('/@/views/demo/system/ship/index.vue'),
     },
     {
+      path: 'dispatch',
+      name: 'dispatchList',
+      meta: {
+        title: t('routes.demo.system.dispatch'),
+        ignoreKeepAlive: true,
+      },
+      component: () => import('/@/views/demo/system/dispatch/index.vue'),
+    },
+    {
       path: 'changePassword',
       name: 'ChangePassword',
       meta: {

@@ -1,5 +1,5 @@
 <template>
-  <BasicModal v-bind="$attrs" @register="registerModal" :title="getTitle" @ok="handleSubmit">
+  <BasicModal v-bind="$attrs" :title="getTitle" @ok="handleSubmit" @register="registerModal">
     <BasicForm @register="registerForm" />
   </BasicModal>
 </template>
@@ -10,6 +10,7 @@
   import { formSchema } from './ship.data';
 
   import { getDeptList } from '/@/api/demo/system';
+
   export default defineComponent({
     name: 'DeptModal',
     components: { BasicModal, BasicForm },
@@ -35,7 +36,7 @@
         }
         const treeData = await getDeptList();
         updateSchema({
-          field: 'parentDept',
+          field: 'departmentName',
           componentProps: { treeData },
         });
       });

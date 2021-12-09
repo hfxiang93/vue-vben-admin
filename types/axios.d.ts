@@ -24,11 +24,12 @@ export interface RequestOptions {
 }
 
 export interface Result<T = any> {
-  code: number;
+  code: number | string;
   type: 'success' | 'error' | 'warning';
   message?: string;
   msg?: string;
-  result: T;
+  result?: T;
+  data?: T;
 }
 
 // multipart/form-data: upload file

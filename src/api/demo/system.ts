@@ -10,7 +10,7 @@ import {
   RolePageListGetResultModel,
   RoleListGetResultModel,
 } from './model/systemModel';
-import { defHttp, otherHttp } from '/@/utils/http/axios';
+import { defHttp, otherHttp, wmsHttp } from '/@/utils/http/axios';
 
 enum Api {
   AccountList = '/system/getAccountList',
@@ -20,6 +20,7 @@ enum Api {
   RolePageList = '/system/getRoleListByPage',
   GetAllRoleList = '/system/getAllRoleList',
   GetAllShipList = '/delivery-plan/queryPageShipagency',
+  getAllDispatchList = '/dispatch/getDispatchListByUserID',
 }
 
 export const getAccountList = (params: AccountParams) =>
@@ -39,5 +40,9 @@ export const getAllRoleList = (params?: RoleParams) =>
 
 export const setRoleStatus = (id: number, status: string) =>
   defHttp.post({ url: Api.setRoleStatus, params: { id, status } });
+
 export const getAllShipList = () =>
   otherHttp.get<RoleListGetResultModel>({ url: Api.GetAllShipList });
+
+export const getAllDispatchList = () =>
+  wmsHttp.post<RoleListGetResultModel>({ url: Api.getAllDispatchList });

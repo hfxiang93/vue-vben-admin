@@ -52,11 +52,15 @@ const transform: AxiosTransform = {
     // 这里逻辑可以根据项目进行修改
     const hasSuccess1 = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS1;
     const hasSuccess2 = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS2;
+    const hasSuccess3 = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS3;
     if (hasSuccess1) {
       return result;
     }
     if (hasSuccess2) {
       return result.list;
+    }
+    if (hasSuccess3) {
+      return data.data;
     }
 
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
@@ -244,5 +248,10 @@ export const defHttp = createAxios();
 export const otherHttp = createAxios({
   requestOptions: {
     apiUrl: globSetting.apiUrl2,
+  },
+});
+export const wmsHttp = createAxios({
+  requestOptions: {
+    apiUrl: globSetting.apiUrl3,
   },
 });

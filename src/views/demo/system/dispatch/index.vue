@@ -2,7 +2,7 @@
   <div>
     <BasicTable :row-selection="rowSelection" @register="registerTable">
       <template #toolbar>
-        <a-button type="primary" @click="handleCreate"> 新增船舶</a-button>
+        <a-button type="primary" @click="handleCreate"> 新增派单</a-button>
       </template>
       <template #action="{ record }">
         <TableAction
@@ -30,7 +30,7 @@
   import { defineComponent } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { getAllShipList } from '/@/api/demo/system';
+  import { getAllDispatchList } from '/@/api/demo/system';
 
   import { useModal } from '/@/components/Modal';
   import ShipModal from './ShipModal.vue';
@@ -43,14 +43,18 @@
     setup() {
       const [registerModal, { openModal }] = useModal();
       const [registerTable, { reload }] = useTable({
-        title: '船舶列表',
-        api: getAllShipList,
+        title: '派单列表',
+        api: getAllDispatchList,
+        fetchSetting: {
+          listField: 'datalist',
+          totalField: 'page.totalCount',
+        },
         columns,
         formConfig: {
           labelWidth: 120,
           schemas: searchFormSchema,
         },
-        // pagination: false,
+        pagination: true,
         striped: true,
         useSearchForm: true,
         clickToRowSelect: true,
@@ -72,7 +76,7 @@
           console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
         getCheckboxProps: (record) => ({
-          disabled: record.chuangjianren === '物流港业务', // Column configuration not to be checked
+          disabled: record.week === 44, // Column configuration not to be checked
           name: record.name,
         }),
       };
